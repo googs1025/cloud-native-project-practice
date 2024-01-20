@@ -29,6 +29,11 @@
 ```
 
 参考：
+
 [官方文档](https://kind.sigs.k8s.io/docs/user/quick-start/#creating-a-cluster)
 
 [配置文档](https://www.lixueduan.com/posts/kubernetes/15-kind-kubernetes-in-docker/)
+
+[配置文档](https://blog.gmem.cc/kind)
+
+[镜像 load 到 kind 集群中](https://blog.51cto.com/busy/6105149)
