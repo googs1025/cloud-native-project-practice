@@ -8,6 +8,20 @@ helm install kruise kruise
 ```
 
 ```bash
+[root@VM-0-13-centos charts]# helm install kruise kruise
+NAME: kruise
+LAST DEPLOYED: Sun Jan 21 10:52:18 2024
+NAMESPACE: default
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+[root@VM-0-13-centos charts]# helm install kruise-rollout kruise-rollout
+NAME: kruise-rollout
+LAST DEPLOYED: Sun Jan 21 10:52:36 2024
+NAMESPACE: default
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
 [root@VM-0-13-centos ~]# kubectl get all -nkruise-system
 NAME                                            READY   STATUS    RESTARTS   AGE
 pod/kruise-controller-manager-f88975c54-2vv2m   1/1     Running   0          9h

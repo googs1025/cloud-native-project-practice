@@ -19,6 +19,10 @@
 # kind create cluster --config=cluster.yaml
 ```
 
+```bash
+[root@VM-0-13-centos ~]# kind load docker-image kubesphere/kube-apiserver:v1.21.4 --name master-cluster
+```
+
 
 ## 下载 kind
 ```bash
@@ -29,6 +33,8 @@
 ```
 
 参考：
+
+- 注意端口映射问题
 
 [官方文档](https://kind.sigs.k8s.io/docs/user/quick-start/#creating-a-cluster)
 

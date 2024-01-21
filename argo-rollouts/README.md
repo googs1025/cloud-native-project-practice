@@ -2,6 +2,8 @@
 
 ## 安装
 ```bash
+[root@VM-0-13-centos argo-rollout-practice]# kubectl create ns argo-rollouts
+namespace/argo-rollouts created
 [root@VM-0-13-centos argo-rollout-practice]# kubectl apply -nargo-rollouts -f install.yaml
 customresourcedefinition.apiextensions.k8s.io/analysisruns.argoproj.io configured
 customresourcedefinition.apiextensions.k8s.io/analysistemplates.argoproj.io configured

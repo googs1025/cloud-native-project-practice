@@ -1,0 +1,42 @@
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+name: cluster2  # 集群二
+nodes:
+  - role: control-plane
+    image: kindest/node:v1.20.15
+    extraPortMappings:
+      - containerPort: 6444  # 容器端口
+        hostPort: 46443      # 主机端口
+        protocol: tcp
+    extraMounts:
+      - hostPath: /root/kind/node2-1
+        containerPath: /files
+  - role: worker
+    image: kindest/node:v1.20.15
+    extraPortMappings:       # 将 node 的端口映射到主机
+      - containerPort: 80   # 容器端口
+        hostPort: 40080     # 主机端口
+        protocol: tcp
+      - containerPort: 443  # 容器端口
+        hostPort: 40443     # 主机端口
+        protocol: tcp
+    labels:
+      gateway: true
+    extraMounts:
+      - hostPath: /root/kind/node2-2
+        containerPath: /files
+networking:
+  apiServerAddress: "0.0.0.0"
+  apiServerPort: 6444
+  podSubnet: "10.244.0.0/16" # 自定义 pod IP 地址范围
+  serviceSubnet: "10.96.0.0/12"
+  kubeProxyMode: "ipvs"
+
+# 注意 容器端口冲突报错
+# [root@VM-0-13-centos karmada]# kind create cluster --config=cluster2.yaml
+#Creating cluster "cluster2" ...
+# ✓ Ensuring node image (kindest/node:v1.20.15) 🖼
+# ✗ Preparing nodes 📦 📦
+#ERROR: failed to create cluster: docker run error: command "docker run --hostname cluster2-control-plane --name cluster2-control-plane --label io.x-k8s.kind.role=control-plane --privileged --security-opt seccomp=unconfined --security-opt apparmor=unconfined --tmpfs /tmp --tmpfs /run --volume /var --volume /lib/modules:/lib/modules:ro --detach --tty --label io.x-k8s.kind.cluster=cluster2 --net kind --restart=on-failure:1 --init=false --volume=/root/kind/node2-1:/files --publish=0.0.0.0:46443:6444/TCP --publish=0.0.0.0:6443:6443/TCP -e KUBECONFIG=/etc/kubernetes/admin.conf kindest/node:v1.20.15" failed with error: exit status 125
+#Command Output: ed62be0303c13dafe7a5fc5755fd0a927393958167ec1512c2927ca75fdf7d46
+#docker: Error response from daemon: driver failed programming external connectivity on endpoint cluster2-control-plane (f193cd1cdb21dbbb909524bfea041331e04d1a585fa0426bcb64e290ad26fc43): Bind for 0.0.0.0:6443 failed: port is already allocated.
