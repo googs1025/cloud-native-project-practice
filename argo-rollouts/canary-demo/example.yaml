@@ -1,0 +1,59 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: example-rollouts-ingress-demo-svc-canary
+spec:
+  ports:
+    - port: 30009
+      targetPort: 8081
+      protocol: TCP
+      name: http
+  selector:
+    app: example-rollouts-ingress-demo
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: example-rollouts-ingress-demo-svc
+spec:
+  ports:
+    - port: 30009
+      targetPort: 8081
+      protocol: TCP
+      name: http
+  selector:
+    app: example-rollouts-ingress-demo
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: example-rollouts-ingress-demo
+spec:
+  replicas: 5
+  strategy:
+    canary:
+      canaryService: example-rollouts-ingress-demo-svc-canary
+      stableService: example-rollouts-ingress-demo-svc
+      trafficRouting:
+        nginx:
+          stableIngress: example-rollouts-ingress-demo-ingress
+      steps:
+        - setWeight: 40
+        - pause: { }
+        - setWeight: 60
+        - pause: { }
+  selector:
+    matchLabels:
+      app: example-rollouts-ingress-demo
+  template:
+    metadata:
+      labels:
+        app: example-rollouts-ingress-demo
+    spec:
+      containers:
+        - name: test
+          image: my-rollouts-test:v1
+          ports:
+            - name: http
+              containerPort: 8081
+              protocol: TCP

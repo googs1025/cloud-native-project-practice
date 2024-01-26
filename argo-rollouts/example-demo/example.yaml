@@ -1,0 +1,51 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: example-rollouts
+spec:
+  # 类似 k8s deployment 资源，但是多了许多字段
+  replicas: 3
+  # 部署策略
+  strategy:
+    # 金丝雀模式
+    canary:
+      steps:
+        # 新版本由 33% 比例流量
+        - setWeight: 33
+        # 手动升级
+        - pause: {}
+        # 也可以设置时间字段
+        # - pause: {duration: 10}
+        # 新版本由 66% 比例流量
+        - setWeight: 66
+        - pause: {}
+  selector:
+    matchLabels:
+      app: example-rollouts
+  template:
+    metadata:
+      labels:
+        app: example-rollouts
+    spec:
+      containers:
+        - name: test
+          image: my-rollouts-test:v1
+          ports:
+            - name: http
+              containerPort: 8081
+              protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: example-rollouts-svc
+spec:
+  type: NodePort
+  ports:
+    - port: 8081
+      nodePort: 30081
+      targetPort: 8081
+      protocol: TCP
+      name: http
+  selector:
+    app: example-rollouts
