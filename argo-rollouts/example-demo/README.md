@@ -159,3 +159,7 @@ rollout 'example-rollouts' aborted
 [root@VM-0-13-centos example-demo]# kubectl argo rollouts set image example-rollouts test=my-rollouts-test:v1
 rollout "example-rollouts" image updated
 ```
+
+参考：
+
+[文档1](https://argoproj.github.io/argo-rollouts/getting-started/)

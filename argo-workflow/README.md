@@ -49,6 +49,29 @@ argo: v3.5.4
   Platform: linux/amd64
 ```
 
+- 常用命令
+```bash
+[root@VM-0-13-centos argo-workflow]# argo list -nargo
+NAME                      STATUS      AGE   DURATION   PRIORITY   MESSAGE
+artifact-passing-pxtk4    Failed      6m    10s        0          child 'artifact-passing-pxtk4-4125037285' failed
+steps-t4wxk               Succeeded   36m   40s        0
+dag-diamond-hwtww         Succeeded   49m   30s        0
+argo-workflow-testj9rnc   Succeeded   51m   10s        0
+argo-workflow-testrm2np   Error       57m   53s        0          Error (exit code 1): pods "argo-workflow-testrm2np" is forbidden: User "system:serviceaccount:argo:default" cannot patch resource "pods" in API group "" in the namespace "argo"
+[root@VM-0-13-centos argo-workflow]# argo submit example
+example-artifact.yaml  example-dag.yaml       example-step.yaml      example.yaml
+[root@VM-0-13-centos argo-workflow]# argo submit example.yaml -nargo
+Name:                argo-workflow-testfj2zx
+Namespace:           argo
+ServiceAccount:      unset (will run with the default ServiceAccount)
+Status:              Pending
+Created:             Fri Jan 26 10:15:19 +0800 (now)
+Progress:
+Parameters:
+  message:           Message string default value
+[root@VM-0-13-centos argo-workflow]# argo delete steps-t4wxk -nargo
+Workflow 'steps-t4wxk' deleted
+```
 
 参考：
 [官方文档](https://argo-workflows.readthedocs.io/en/latest/quick-start/)

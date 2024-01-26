@@ -21,3 +21,9 @@ example-rollouts-ingress-demo-svc-canary   ClusterIP   10.109.76.122   <none>   
 example-rollouts-ingress-demo-example-rollouts-ingress-demo-ingress-canary   nginx   rollouts.practice.com             80      27s
 example-rollouts-ingress-demo-ingress                                        nginx   rollouts.practice.com             80      27s
 ```
+
+参考：
+
+[文档1](https://medium.com/@luigi.toziani_30776/canary-deployment-using-argo-rollouts-with-nginx-7a1ee32b52f6)
+
+[文档2](https://argoproj.github.io/argo-rollouts/getting-started/nginx/)

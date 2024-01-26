@@ -1,13 +1,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Workflow
 metadata:
-  generateName: argo-workflow-test
+  # 所有 pod 都会带上此前缀
+  # [root@VM-0-13-centos argo-workflow]# kubectl get pods -nargo | grep argo-workflow-test-
+  # argo-workflow-test-j9rnc                0/2     Completed   0          6m15s
+  # argo-workflow-test-rm2np                0/2     Completed   0          11m
+  generateName: argo-workflow-test-
 spec:
-  entrypoint: test
+  entrypoint: test  # 从这个模版开始
   arguments:
+    # 入参
     parameters:
       - name: message
         value: Message string default value
+  # 模版
   templates:
     - name: test
       inputs:
