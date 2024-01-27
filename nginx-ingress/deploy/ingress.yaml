@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: testingress
+spec:
+  rules:
+    # 请求时，在 header 中加入 host: practice.testingress.com
+    # 可以理解为 cluster 中的假域名
+    # ex: curl localhost/users -H "host: practice.testingress.com"
+    - host: practice.testingress.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              # 注意：这里 service 与 ingress namespace 需要一致
+              service:
+                name: testservice
+                port:
+                  # 端口设置
+                  number: 80
+  ingressClassName: nginx

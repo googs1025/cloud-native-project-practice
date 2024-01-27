@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: testdeploy
+spec:
+  selector:
+    matchLabels:
+      app: testdeploy
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: testdeploy
+    spec:
+      nodeName: vm-0-16-centos
+      containers:
+        - name: test
+          image: testingress:v1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: testservice
+spec:
+  type: ClusterIP
+  ports:
+    # 映设端口，集群内部
+    - port: 80
+      targetPort: 8080
+  selector:
+    # service 通过selector 和 pod 建立关联
+    app: testdeploy
