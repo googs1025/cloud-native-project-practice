@@ -1,0 +1,40 @@
+apiVersion: policy.karmada.io/v1alpha1
+kind: OverridePolicy
+metadata:
+  name: example
+spec:
+  resourceSelectors:
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: nginx
+      namespace: default
+      labelSelector:
+        matchLabels:
+          app: nginx
+  # 差异化策略
+  overrideRules:
+    # 目标集群
+    - targetCluster:
+        clusterNames:
+          - master-cluster
+      overriders:
+        # 直接使用 patch 方式
+        plaintext:
+          - path: /metadata/annotations
+            operator: add
+            value: {"mastercluster":"sssss"}
+    - targetCluster:
+        clusterNames:
+          - cluster2
+      overriders:
+        plaintext:
+          - path: /metadata/annotations
+            operator: add
+            value: { "cluster2": "sssss" }
+
+
+# [root@VM-0-13-centos test3]# kubectl --kubeconfig /etc/karmada/karmada-apiserver.config apply -f .
+# configmap/karmada-configmaps unchanged
+# deployment.apps/nginx unchanged
+# propagationpolicy.policy.karmada.io/nginx-propagation configured
+# overridepolicy.policy.karmada.io/example unchanged

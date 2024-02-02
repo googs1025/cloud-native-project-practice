@@ -15,7 +15,7 @@ spec:
         app: nginx
     spec:
       containers:
-        - image: nginx
+        - image: nginx:latest
           name: nginx
 ---
 apiVersion: policy.karmada.io/v1alpha1
@@ -23,6 +23,7 @@ kind: PropagationPolicy
 metadata:
   name: nginx-propagation
 spec:
+  # 需要创建的资源对象
   resourceSelectors:
     - apiVersion: apps/v1
       kind: Deployment

@@ -1,0 +1,56 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: karmada-configmaps
+  namespace: default
+data:
+  example.property.1: hello
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - image: nginx:latest
+          name: nginx
+          env:
+            - name: test
+              # 引用资源的其他变量
+              valueFrom:
+                configMapKeyRef:
+                  name: karmada-configmaps
+                  key: example.property.1
+---
+apiVersion: policy.karmada.io/v1alpha1
+kind: PropagationPolicy
+metadata:
+  name: nginx-propagation
+spec:
+  # https://karmada.io/zh/docs/reference/karmada-api/policy-resources/propagation-policy-v1alpha1
+  # 能自动把依赖资源同步创建
+  propagateDeps: true
+  resourceSelectors:
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: nginx
+#    - apiVersion: v1
+#      kind: ConfigMap
+#      name: karmada-configmaps
+  # 选择集群
+  placement:
+    clusterAffinity:
+      clusterNames:
+        - cluster2
+        - master-cluster
