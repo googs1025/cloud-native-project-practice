@@ -1,0 +1,41 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  name: k8stest
+  namespace: argo
+spec:
+  entrypoint: createjobs
+  # 只能操作 pods 资源，deploy 会报错
+  serviceAccountName: argo
+  templates:
+    - name: getpods
+      script:
+        image: bitnami/kubectl:latest
+        command: [ bash ]
+        source: | 
+          kubectl get pods -A
+    # 注：要看 argo-workflows 的 serviceaccount 是否支持创建 jobs 如果不行，需要自行加入
+    - name: createjobs
+      resource:                   # indicates that this is a resource template
+        action: create            # can be any kubectl action (e.g. create, delete, apply, patch)
+        successCondition: status.succeeded > 0
+        failureCondition: status.failed > 3
+        setOwnerReference: true
+        manifest: |               #put your kubernetes spec here
+          apiVersion: batch/v1
+          kind: Job
+          metadata:
+            name: test-jobs
+          spec:
+            template:
+              metadata:
+                name: pi
+              spec:
+                containers:
+                - name: pi
+                  image: perl
+                  command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi(2000)"]
+                restartPolicy: Never
+            backoffLimit: 4      
+
+            
