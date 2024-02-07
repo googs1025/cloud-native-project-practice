@@ -1,0 +1,38 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+# 定义流水线
+metadata:
+  name: hello-goodbye
+spec:
+  params:
+    - name: username
+      type: string
+  # 任务对象
+  tasks:
+    - name: hello
+      taskRef:
+        name: hello
+      params:
+        - name: username
+          value: $(params.username)
+    - name: goodbye
+      runAfter:
+        - hello
+      taskRef:
+        name: goodbye
+      params:
+        - name: username
+          value: $(params.username)
+---
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+# 触发流水线
+metadata:
+  name: hello-goodbye-run
+spec:
+  pipelineRef:
+    name: hello-goodbye
+  params:
+    - name: username
+      value: "Tekton"
+---

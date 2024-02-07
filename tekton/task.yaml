@@ -1,0 +1,23 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Task
+# 定义 task 任务
+metadata:
+  name: echo-hello-world
+spec:
+  steps:
+    - name: echo
+      image: perl:latest
+      command:
+        - echo
+      args:
+        - "hello world"
+---
+apiVersion: tekton.dev/v1alpha1
+kind: TaskRun
+# 任务执行启动
+metadata:
+  name: echo-hello-world-task-run
+spec:
+  # 任务对象
+  taskRef:
+    name: echo-hello-world
