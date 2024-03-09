@@ -21,7 +21,7 @@ spec:
         successCondition: status.succeeded > 0
         failureCondition: status.failed > 3
         setOwnerReference: true
-        manifest: |               #put your kubernetes spec here
+        manifest: |               # put your kubernetes spec here
           apiVersion: batch/v1
           kind: Job
           metadata:

@@ -917,8 +917,12 @@ rules:
   - ""
   resources:
   - secrets
+  - services
   verbs:
   - get
+  - create
+  - list
+  - update
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
@@ -942,6 +946,7 @@ rules:
   - clusterworkflowtemplates/finalizers
   - workflowtasksets
   - workflowtasksets/finalizers
+  - workflowtasksets/status
   - workflowtaskresults
   - workflowtaskresults/finalizers
   verbs:
@@ -1023,6 +1028,7 @@ rules:
   resources:
   - pods
   - pods/exec
+  - services
   verbs:
   - create
   - get
@@ -1056,6 +1062,7 @@ rules:
   - workflows/finalizers
   - workflowtasksets
   - workflowtasksets/finalizers
+  - workflowtasksets/status
   - workflowartifactgctasks
   verbs:
   - get
