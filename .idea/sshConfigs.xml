@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="SshConfigs">
-    <configs>
-      <sshConfig host="118.24.125.205" id="eda01022-0b56-45af-b267-c1b017a9340b" keyPath="$USER_HOME$/.ssh/node.pem" port="22" nameFormat="DESCRIPTIVE" username="root" useOpenSSHConfig="true" />
-    </configs>
-  </component>
-</project>
