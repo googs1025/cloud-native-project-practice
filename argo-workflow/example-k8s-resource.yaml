@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: k8s-jobs-
+spec:
+  entrypoint: pi-tmpl
+  templates:
+    - name: pi-tmpl
+      resource:                   # indicates that this is a resource template
+        # 操作 (e.g. create, delete, apply, patch)
+        action: create
+        # 设置成功状态或失败状态
+        successCondition: status.succeeded > 0
+        failureCondition: status.failed > 3
+        # k8s 资源模版
+        manifest: |              
+          apiVersion: batch/v1
+          kind: Job
+          metadata:
+            generateName: pi-job-
+          spec:
+            template:
+              metadata:
+                name: pi
+              spec:
+                containers:
+                - name: pi
+                  image: perl
+                  command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi(2000)"]
+                restartPolicy: Never
+            backoffLimit: 4
+

@@ -1,0 +1,71 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  name:  http-check-test
+  namespace: argo
+spec:
+  entrypoint:  create-steps
+  serviceAccountName: argo
+  templates:
+    - name: create-steps
+      steps:
+        - - name: get-pods
+            template: getpods
+          - name: create-pods
+            template: nginxpod
+          - name: create-svc
+            template: nginxpodsvc
+          - name: http-check
+            template: http
+            arguments:
+              # 请求 svc 域名： http://nginxpodsvc or http://nginxpodsvc.<namespace>.svc.cluster.local:80
+              # 如果 pod 与 svc 在同一个命名空间，可以将命名空间省略不写
+              parameters: [{name: url, value: "http://nginxpodsvc"}]
+    - name: getpods
+      script:
+        image: bitnami/kubectl:latest
+        command: [ bash ]
+        source: |
+          kubectl get pods -A
+    - name: nginxpod
+      resource:
+        action: create
+        setOwnerReference: true
+        manifest: |
+          apiVersion: v1
+          kind: Pod 
+          metadata:
+            name: pod1
+            labels:
+              app: nginxpod
+          spec:
+            containers:
+            - name: nginx
+              image: nginx:1.18-alpine
+    - name: nginxpodsvc
+      resource:
+        action: create
+        setOwnerReference: true
+        manifest: |
+          apiVersion: v1
+          kind: Service 
+          metadata:
+            name: nginxpodsvc
+          spec:
+             type: ClusterIP
+             selector:
+                 app: nginxpod
+             ports:
+               - protocol: TCP
+                 port: 80
+                 targetPort: 80
+    # 使用 http 探测
+    - name: http
+      inputs:
+        parameters:
+          - name: url
+      http:
+        timeoutSeconds: 20 # Default 30
+        url: "{{inputs.parameters.url}}"
+        successCondition: "response.statusCode == 200"
+        method: "GET"         # Default GET
