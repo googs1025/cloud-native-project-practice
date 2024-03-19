@@ -43,3 +43,5 @@
 [配置文档](https://blog.gmem.cc/kind)
 
 [镜像 load 到 kind 集群中](https://blog.51cto.com/busy/6105149)
+
+[创建集群 error](https://stackoverflow.com/questions/73136117/why-multinode-kind-cluster-creation-failed)

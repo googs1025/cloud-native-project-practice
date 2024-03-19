@@ -3,7 +3,7 @@ apiVersion: kind.x-k8s.io/v1alpha4
 name: master-cluster  # 主集群
 nodes:
   - role: control-plane
-    image: kindest/node:v1.20.15
+    image: kindest/node:v1.24.15
     extraPortMappings:
       - containerPort: 6443   # 容器端口
         hostPort: 36443       # 主机端口

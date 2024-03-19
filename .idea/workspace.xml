@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="3ac3793d-ba30-4a86-87c3-b13666d66a4d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/karmada/cluster2.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/karmada/cluster2.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/karmada/master-cluster.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/karmada/master-cluster.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kind/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/kind/README.md" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
+  </component>
+  <component name="GOROOT" url="file:///opt/homebrew/Cellar/go/1.20.2/libexec" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2arTeJ1jsCRLruXqpE1UAYrKsfg" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.format.on.save.advertiser.fired&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.watchers.conflict.with.on.save.actions.check.performed&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/zhenyu.jiang/go/src/golanglearning/new_project/cloud-native-project-practice/submariner&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;web.server&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/submariner" />
+      <recent name="$PROJECT_DIR$/karmada/example/test3" />
+      <recent name="$PROJECT_DIR$/nginx-ingress" />
+      <recent name="$PROJECT_DIR$/argo-rollouts/canary-demo" />
+      <recent name="$PROJECT_DIR$/argo-rollouts/demo-v2" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/karmada/example/test2" />
+      <recent name="$PROJECT_DIR$/karmada/example/test1" />
+      <recent name="$PROJECT_DIR$/karmada/example" />
+      <recent name="$PROJECT_DIR$/nginx-ingress/demo" />
+      <recent name="$PROJECT_DIR$/nginx-ingress" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Go Build.go build golanglearning/new_project/cloud-native-project-practice/test">
+    <configuration name="go build golanglearning/new_project/cloud-native-project-practice/karmada" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="cloud-native-project-practice" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="golanglearning/new_project/cloud-native-project-practice/karmada" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/karmada/main.go" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build golanglearning/new_project/cloud-native-project-practice/test" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="cloud-native-project-practice" />
+      <working_directory value="$PROJECT_DIR$/test" />
+      <kind value="PACKAGE" />
+      <package value="golanglearning/new_project/cloud-native-project-practice/test" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/test/main.go" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build mynginx" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="cloud-native-project-practice" />
+      <working_directory value="$PROJECT_DIR$/nginx-ingress" />
+      <kind value="PACKAGE" />
+      <package value="mynginx" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/nginx-ingress/main.go" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Build.go build golanglearning/new_project/cloud-native-project-practice/test" />
+        <item itemvalue="Go Build.go build mynginx" />
+        <item itemvalue="Go Build.go build golanglearning/new_project/cloud-native-project-practice/karmada" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VgoProject">
+    <settings-migrated>true</settings-migrated>
+  </component>
+</project>

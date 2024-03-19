@@ -1,0 +1,24 @@
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+name: cluster2  # 第二个集群
+nodes:
+  - role: control-plane
+    image: kindest/node:v1.24.15
+    extraPortMappings:
+      - containerPort: 6444   # 注意这里的端口，不是 6443 否则会和jt1 冲突
+        hostPort: 46443  #安全组开放
+        protocol: tcp
+    extraMounts:
+      - hostPath: /root/kind/node2-1
+        containerPath: /files
+  - role: worker
+    image: kindest/node:v1.24.15
+    extraMounts:
+      - hostPath: /root/kind/node2-2
+        containerPath: /files
+networking:
+  apiServerAddress: "0.0.0.0"
+  apiServerPort: 6444
+  podSubnet: "10.7.0.0/16" #自定义 pod IP 地址范围
+  serviceSubnet: "10.97.0.0/16"
+  kubeProxyMode: "ipvs"
