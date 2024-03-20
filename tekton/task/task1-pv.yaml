@@ -1,0 +1,17 @@
+apiVersion: tekton.dev/v1
+kind: TaskRun
+metadata:
+  name: test-task-run
+spec:
+  workspaces:
+    - name: myspace
+      # 使用 本地目录
+      # emptyDir: {}
+      # 使用本地存储挂载
+      persistentVolumeClaim:
+        claimName: mylocalpvc
+  params:
+    - name: example
+      value: "test"
+  taskRef:
+    name: example-task

@@ -1,0 +1,13 @@
+apiVersion: tekton.dev/v1
+kind: TaskRun
+metadata:
+  name: test-task-run
+spec:
+  workspaces:
+    - name: myspace
+      emptyDir: {}
+  params:
+    - name: example
+      value: "test"
+  taskRef:  # 引用 task 实例
+    name: example-task

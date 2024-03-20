@@ -1,0 +1,30 @@
+apiVersion: tekton.dev/v1
+kind: Task
+metadata:
+  name: example-task
+spec:
+  workspaces:
+    - name: myspace
+      # mountPath: /myapp 可以自己定义目录
+  params:
+    - name: example
+      default: "test"
+  results:
+    - name: myresult
+      description: "my result"
+  steps:
+    - name: step1
+      image: alpine:3.15
+      script: |
+        #!/bin/sh
+        echo "Hello step1--1 $(params.example)"
+        echo $(workspaces.myspace.path)
+        echo "msg from step1" > $(workspaces.myspace.path)/msg.txt
+        echo "step1" > "$(results.myresult.path)"
+    - name: step2
+      image: alpine:3.15
+      script: |
+        #!/bin/sh
+        echo "Hello step2--2"
+        cat $(workspaces.myspace.path)/msg.txt
+        cat "$(results.myresult.path)"

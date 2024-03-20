@@ -18,12 +18,22 @@ nodes:
     protocol: tcp
 - role: worker
   image: kindest/node:v1.20.15
-#  extraMounts:  //挂载
-#  - hostPath: /path/to/my/files/
-#    containerPath: /files
+  #  extraMounts:  //挂载
+  #  - hostPath: /path/to/my/files/
+  #    containerPath: /files
 networking:
   apiServerAddress: "0.0.0.0"
   apiServerPort: 6443
   podSubnet: "10.244.0.0/16" # 自定义 pod IP 地址范围
-  serviceSubnet: "10.96.0.0/12" 
+  serviceSubnet: "10.96.0.0/12"
   kubeProxyMode: "ipvs"
+
+#  ipFamily: ipv4 # 可选ipv4、ipv6、dual
+#  apiServerAddress: 127.0.0.1 # 在宿主机上的监听地址
+#
+#  podSubnet: "10.244.0.0/16" # pod的网段, IPv4 默认 10.244.0.0/16, IPv6 默认 fd00:10:244::/56
+#  serviceSubnet: "10.96.0.0/16" # service的网段, IPv4 默认 10.96.0.0/16, IPv6 默认 fd00:10:96::/112
+#  disableDefaultCNI: false # 默认false, 如果为 true 将不会安装kindnetd, kindnetd是kind附带的一个简单的网络实现
+#  kubeProxyMode: "iptables" # 默认 iptables , 可选 ipvs
+#  dnsSearch: # 搜索域
+#    - xxx.local
