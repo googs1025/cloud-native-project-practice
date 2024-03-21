@@ -1,0 +1,32 @@
+apiVersion: tekton.dev/v1 # or tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: p1
+spec:
+  #
+  workspaces:
+    - name: p1workspace
+  tasks:
+    - name: p1task1
+      taskRef:
+        name: p1task1
+      workspaces:
+        - name: p1workspace
+    - name: p1task2
+      taskRef:
+        name: p1task2
+      workspaces:
+        - name: p1workspace
+---
+apiVersion: tekton.dev/v1 # or tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: p1run
+spec:
+  workspaces:
+    - name: p1workspace
+      # 在触发流水线时，不能使用 emptyDir 挂载 workspaces, 因为每个pod不一定会调度到
+      # 同一个节点上，无法通过本地挂载共享目录
+      emptyDir: {}
+  pipelineRef:
+    name: p1

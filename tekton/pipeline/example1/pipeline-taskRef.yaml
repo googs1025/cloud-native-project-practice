@@ -4,9 +4,11 @@ kind: Task
 metadata:
   name: goodbye
 spec:
+  # 一个 pod(task) 中可以共享的参数
   params:
     - name: username
       type: string
+  # 每个 step 都是一个 container
   steps:
     - name: goodbye
       image: alpine

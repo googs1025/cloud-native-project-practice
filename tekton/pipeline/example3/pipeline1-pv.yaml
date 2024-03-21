@@ -1,0 +1,51 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: p1configmap
+data:
+  users: |
+    user1
+    user2
+    user3
+  depts: |
+    dept1
+    dept2
+    dept3
+---
+apiVersion: tekton.dev/v1
+kind: Pipeline
+metadata:
+  name: p1
+spec:
+  workspaces:
+    - name: p1workspace
+  tasks:
+    - name: p1task1
+      taskRef:
+        name: p1task1
+      workspaces:
+        - name: p1workspace
+    - name: p1task2
+      taskRef:
+        name: p1task2
+      workspaces:
+        - name: p1workspace
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  name: p1run
+spec:
+  workspaces:
+    - name: p1workspace
+      # 使用 pv pvc 挂载一定没问题
+      persistentVolumeClaim:
+        claimName: mylocalpvc
+      # 也可以使用 configmap 实现挂载
+      # 1、只读。不可写
+      # 2、大小限制为1M 。因此不可存大量数据
+      # 3、必须在创建pipelinerun(或taskrun) 之前存在
+      # configmap:
+      #  name: p1configmap
+  pipelineRef:
+    name: p1

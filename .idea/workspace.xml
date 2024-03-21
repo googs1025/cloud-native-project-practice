@@ -6,10 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="3ac3793d-ba30-4a86-87c3-b13666d66a4d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kind/cluster.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/kind/cluster.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tekton/pipeline-taskRef.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/tekton/pipeline/pipeline-taskRef.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tekton/pipeline.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/tekton/pipeline/pipeline.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tekton/task.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/tekton/task/task.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tekton/pipeline/pipeline-taskRef.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/tekton/pipeline/example1/pipeline-taskRef.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tekton/pipeline/pipeline.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/tekton/pipeline/example1/pipeline.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tekton/tekton_v0.26.0.yaml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,11 +61,11 @@
       <recent name="$PROJECT_DIR$/argo-rollouts/demo-v2" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tekton/pipeline/example3" />
+      <recent name="$PROJECT_DIR$/tekton/pipeline/example2" />
+      <recent name="$PROJECT_DIR$/tekton/pipeline/example1" />
       <recent name="$PROJECT_DIR$/tekton" />
       <recent name="$PROJECT_DIR$/tekton/task" />
-      <recent name="$PROJECT_DIR$/tekton/pipeline" />
-      <recent name="$PROJECT_DIR$/karmada/example/test2" />
-      <recent name="$PROJECT_DIR$/karmada/example/test1" />
     </key>
   </component>
   <component name="RunManager" selected="Go Build.go build golanglearning/new_project/cloud-native-project-practice/test">

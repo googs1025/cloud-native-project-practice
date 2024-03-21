@@ -7,7 +7,7 @@ spec:
   params:
     - name: username
       type: string
-  # 任务对象
+  # 任务对象 -> 每个 task 都是一个 pod 对象
   tasks:
     - name: hello
       taskRef:
@@ -30,6 +30,7 @@ kind: PipelineRun
 metadata:
   name: hello-goodbye-run
 spec:
+  # 引用 pipeline 对象
   pipelineRef:
     name: hello-goodbye
   params:

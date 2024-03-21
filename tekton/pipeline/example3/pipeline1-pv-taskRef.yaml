@@ -1,0 +1,31 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: p1task1
+spec:
+  workspaces:
+    - name: p1workspace
+  steps:
+    - name: echo1
+      image: alpine:3.15
+      script: |
+        #!/bin/sh
+        echo "this is task1"
+        echo "workspace: $(workspaces.p1workspace.path)"
+        echo "task1" > "$(workspaces.p1workspace.path)/task1.txt"
+---
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: p1task2
+spec:
+  workspaces:
+    - name: p1workspace
+  steps:
+    - name: echo1
+      image: alpine:3.15
+      script: |
+        #!/bin/sh
+        echo "this is task2"
+        echo "workspace: $(workspaces.p1workspace.path)"
+        ls $(workspaces.p1workspace.path)
