@@ -16,10 +16,11 @@ spec:
   nodeAffinity:
     required:
       nodeSelectorTerms:
+        # 指定集群中的节点
         - matchExpressions:
             - key: kubernetes.io/hostname
               operator: In
-              values:                 # 指定集群中的节点
+              values:
                 - cluster2-worker
 ---
 apiVersion: storage.k8s.io/v1

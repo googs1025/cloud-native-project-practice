@@ -6,9 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="3ac3793d-ba30-4a86-87c3-b13666d66a4d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tekton/pipeline/pipeline-taskRef.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/tekton/pipeline/example1/pipeline-taskRef.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tekton/pipeline/pipeline.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/tekton/pipeline/example1/pipeline.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tekton/tekton_v0.26.0.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/kind/deploy.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/kind/deploy1.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tekton/release.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/tekton/release.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tekton/task/example2/task1.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/tekton/task/example2/task1.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,37 +35,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.format.on.save.advertiser.fired&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.watchers.conflict.with.on.save.actions.check.performed&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/zhenyu.jiang/go/src/golanglearning/new_project/cloud-native-project-practice/submariner&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;web.server&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultGoTemplateProperty": "Go File",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.format.on.save.advertiser.fired": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "RunOnceActivity.go.watchers.conflict.with.on.save.actions.check.performed": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "go.import.settings.migrated": "true",
+    "last_opened_file_path": "/Users/zhenyu.jiang/go/src/golanglearning/new_project/cloud-native-project-practice/tekton/pipeline/example3",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "web.server"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tekton/pipeline/example3" />
       <recent name="$PROJECT_DIR$/submariner" />
       <recent name="$PROJECT_DIR$/karmada/example/test3" />
       <recent name="$PROJECT_DIR$/nginx-ingress" />
       <recent name="$PROJECT_DIR$/argo-rollouts/canary-demo" />
-      <recent name="$PROJECT_DIR$/argo-rollouts/demo-v2" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tekton/task/example1" />
+      <recent name="$PROJECT_DIR$/tekton/task/example2" />
+      <recent name="$PROJECT_DIR$/tekton/task/example3" />
       <recent name="$PROJECT_DIR$/tekton/pipeline/example3" />
       <recent name="$PROJECT_DIR$/tekton/pipeline/example2" />
-      <recent name="$PROJECT_DIR$/tekton/pipeline/example1" />
-      <recent name="$PROJECT_DIR$/tekton" />
-      <recent name="$PROJECT_DIR$/tekton/task" />
     </key>
   </component>
   <component name="RunManager" selected="Go Build.go build golanglearning/new_project/cloud-native-project-practice/test">

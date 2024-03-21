@@ -3,12 +3,14 @@ kind: Task
 metadata:
   name: example-task
 spec:
+  # 自定义挂载目录
   workspaces:
     - name: myspace
       # mountPath: /myapp 可以自己定义目录
   params:
     - name: example
       default: "test"
+  # 可以定义输出结果
   results:
     - name: myresult
       description: "my result"
@@ -26,5 +28,7 @@ spec:
       script: |
         #!/bin/sh
         echo "Hello step2--2"
+        # 输出共享目录
         cat $(workspaces.myspace.path)/msg.txt
+        # 输出共享结果
         cat "$(results.myresult.path)"
