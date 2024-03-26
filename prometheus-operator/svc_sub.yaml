@@ -1,0 +1,53 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cluster1-kube-state-metrics
+  labels:
+    app.kubernetes.io/name: cluster1-kube-state-metrics
+spec:
+  # 使用 ExternalName 类型，将 Service 直接指向某个 Service 的 DNS 名
+  type: ExternalName
+  externalName: kube-state-metrics.kube-system.svc.clusterset.local
+  # 设置端口
+  ports:
+    - name: cluster1-metrics
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: cluster1-kube-state-metrics #名称和 svc名称要保持一致
+subsets:
+  # ip 不重要最后都会被替换掉
+  - addresses:
+      - ip: 1.2.3.4
+    ports:
+      - port: 8080
+        name: cluster1-metrics  # 名称必须和 svc中的 port name 保持一致
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: cluster1-state-metrics
+  labels:
+    team: myweb
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: cluster1-kube-state-metrics # 名称和svc的lable保持一致
+  namespaceSelector:
+    matchNames:
+      - default
+  endpoints:
+    - port: "cluster1-metrics"
+      interval: 15s
+      path: /metrics
+      scheme: http
+      relabelings:
+        - sourceLabels: [ __address__ ]
+          targetLabel: __address__
+          regex: (.*)
+          replacement: "$FQDN:$PORT"
+          action: replace

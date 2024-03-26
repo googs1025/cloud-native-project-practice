@@ -11,6 +11,7 @@ import (
 	"k8s.io/client-go/util/homedir"
 )
 
+// GetClientByBearerToken 使用 BearerToken 获取 clientSet
 func GetClientByBearerToken() *kubernetes.Clientset {
 	// 指定 host 和 bearer token
 	config := &rest.Config{
@@ -25,6 +26,7 @@ func GetClientByBearerToken() *kubernetes.Clientset {
 	return client
 }
 
+// GetClientByConfig 使用 .kube/config 获取 clientSet
 func GetClientByConfig() *kubernetes.Clientset {
 	configPath := homedir.HomeDir() + "/.kube/config"
 	config, _ := clientcmd.BuildConfigFromFlags("", configPath)

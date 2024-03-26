@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: testapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: testapp
+  template:
+    metadata:
+      labels:
+        app: testapp
+    spec:
+      containers:
+        - name: testapp
+          image: fabxc/instrumented_app
+          ports:
+            - name: web
+              containerPort: 8080
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: testapp
+  labels:
+    app: testapp
+spec:
+  selector:
+    app: testapp
+  ports:
+    - name: web
+      port: 8080
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: testapp
+  labels:
+    team: myweb
+# ServiceMonitor 对象就会发现这些 Endpoints 对象，并配置 Prometheus 监控这些 Pod。
+# ServiceMonitorSpec 的 endpoints 部分就是用于配置这些 Endpoints 的哪些端口将被 scrape 指标的
+spec:
+  selector:
+    matchLabels:
+      app: testapp
+  endpoints:
+    - port: 8080

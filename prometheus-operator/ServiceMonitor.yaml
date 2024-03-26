@@ -1,0 +1,22 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: my-state-metrics
+  labels:
+    team: myweb
+# ServiceMonitor 对象就会发现这些 Endpoints 对象，并配置 Prometheus 监控这些 Pod。
+# ServiceMonitorSpec 的 endpoints 部分就是用于配置这些 Endpoints 的哪些端口将被 scrape 指标的
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: kube-state-metrics
+  # namespace selector 部分用于指定要监控哪些命名空间中的 Pod。
+  namespaceSelector:
+    matchNames:
+    - kube-system
+  # endpoints 部分用于指定要监控哪些端口。
+  endpoints:
+    - port: "http-metrics"
+      interval: 30s
+      path: /metrics
+      scheme: http
